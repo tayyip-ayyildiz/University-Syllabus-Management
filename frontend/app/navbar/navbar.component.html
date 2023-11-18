@@ -1,0 +1,35 @@
+
+  <div class="navbarLigne">
+    <ul id="navbar" class="navbar">
+        <li class="dropdown">
+            <a routerLink="/" class="dropbtn ">Accueil</a>  
+        </li>
+        <ng-container *ngIf="isAuthentified, else Authentification">
+          <li class="dropdown">
+              <a routerLink="/formation" class="dropbtn ">Formations</a>
+          </li>
+
+          <li class="dropdown">
+              <p class="p">{{login.nom}} {{login.prenom}}</p>
+          </li>
+          <li class="dropdown">
+            <p class="p">{{login.roles}}</p>
+        </li>
+        
+
+        <li class="dropdown">
+            <a routerLink="/" class="dropbtn" (click)="onLogout()">Déconnexion</a>
+        </li>
+      </ng-container>
+      <ng-template #Authentification>
+
+        <li class="dropdown"><a routerLink="/connexion" class="dropbtn">Connexion</a></li>
+
+      </ng-template>
+    </ul>
+    <table class="ligne"></table>
+  </div>
+
+
+
+  

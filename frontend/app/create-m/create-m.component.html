@@ -1,0 +1,183 @@
+<div *ngIf="isAuthentified, else Authentification">
+
+  
+    <section id="contact">
+      <div class="formulaire">
+          <div class="title">
+  
+              <h3>Création de matières</h3>
+          </div>
+      
+          <form>
+          <div class="erreur">
+            <div *ngIf="!nomB">
+              <p>Veuillez remplir le nom !</p>
+            </div>
+            <div *ngIf="!themeB">
+              <p>Veuillez remplir le theme !</p>
+            </div>
+            <div *ngIf="!descriptionB">
+              <p>Veuillez remplir la description !</p>
+            </div>
+            <div *ngIf="!heurecmB">
+              <p>Veuillez choissir un nombre positif !</p>
+            </div>
+            <div *ngIf="!heuretdB">
+              <p>Veuillez choissir un nombre positif !</p>
+            </div>
+            <div *ngIf="!heuretpB">
+              <p>Veuillez choissir un nombre positif !</p>
+            </div>
+            <div *ngIf="!coutTDB">
+              <p>Veuillez choissir un nombre positif !</p>
+            </div>
+          </div>
+          <div style="width:100%">
+              <input style="width:47%" #nomM id="nomM" type="text" required [value]="mat.nom"  placeholder="Nom de la matière *" required>
+            </div>
+              <select class="select" #theme id="theme" name="theme"required [(ngModel)]="selectedTM">
+                <option value="">-- Sélectionnez un thème--</option>
+                <option *ngFor="let item of themes" [value]="item.id">{{ item.nom }}</option>
+              </select>
+              <input  #themeM id="themeM" type="text" [disabled]="selectedC!=0" [value]="mat.themeM"  placeholder="Nom du nouveau thème *" required>
+              <textarea #description id="description" [value]="mat.description" placeholder="Déscription de la Matière... *"></textarea>
+              <div style="width:100%;padding-top: 15px;">
+                <div class="groupe">
+                  <label class="label"> Heure de CM</label>
+                  <input #heureCM id="heureCM" type="number" min="0" required>
+                </div>
+                <div class="groupe">
+                  <label class="label">Heure de TD</label>
+                  <input #heureTD id="heureTD" type="number" min="0" required>
+                </div>
+                <div class="groupe">
+                  <label class="label">Heure de TP</label>
+                  <input #heureTP id="heureTP" type="number" min="0" required>
+                </div>
+                <div class="groupe">
+                  <label class="label">Cout d'une heure de TD</label>
+                  <input #coutHTD id="coutHTD" type="number" min="0" required>
+                </div>
+              </div>
+  
+              <h3 class="h3">Ajouter compétences</h3>
+  
+              
+  
+              <div class="dragDrop" cdkDropListGroup>
+                <div>
+                  <h1 class="h1"> Ajouter des compétences</h1>
+                  <div class="listMatiereVide" [cdkDropListData]="competenceFNomCreate" cdkDropList (cdkDropListDropped)="drop($event)">
+                    <div class="matiere" cdkDrag *ngFor="let competence of competenceFNomCreate">
+                      {{competence.nom}}
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h1>Liste des compétences</h1>
+                  <div class="listMatiereFull">
+                    <div class="flexWrap" [cdkDropListData]="competenceFNom" cdkDropList (cdkDropListDropped)="dropBack($event)">
+                        <div class="matiere" cdkDrag *ngFor="let competence of competenceFNom">{{competence.nom}}</div>
+                    </div>
+                  </div>
+                </div> 
+              </div>
+            </form>
+  
+            <ng-container *ngIf="!isLoading">
+              <!-- Contenu à afficher pendant la requête -->
+              <button class="btnValider" (click)="create(nomM.value, themeM.value, description.value, heureCM.valueAsNumber, heureTD.valueAsNumber, heureTP.valueAsNumber, coutHTD.valueAsNumber)">Ajouter matière</button>
+            </ng-container>
+          <ng-container *ngIf="isLoading">
+              <!-- Contenu à afficher pendant la requête -->
+              <button class="btnValider" (click)="create(nomM.value, themeM.value, description.value, heureCM.valueAsNumber, heureTD.valueAsNumber, heureTP.valueAsNumber, coutHTD.valueAsNumber) " [disabled]="isLoading">Chargement...</button>
+            </ng-container>
+
+        
+
+          
+      </div>
+      
+  <section class="sectionBot">
+    <div class="formulaire">
+      <div style="margin-bottom: 50px;" *ngIf="ready && mats.length!=0; else notreadyM">
+  
+        <h3 class="h3 fontSize">Liste des matieres ajoutées</h3>
+    
+
+              <div class="flexWrap" *ngFor="let m of mats  | paginate: { itemsPerPage: 1, currentPage: page }">
+                <div class="elem">
+                  <h2> Nom : </h2>
+                  <p> {{  m.matiere.nom}} </p>
+                </div>
+                <div class="elem">
+                  <h2> Thème : </h2>
+                  <p> {{ m.matiere.themeM.nom }} </p>
+                </div>
+                <div class="elem">
+                  <h2> Description : </h2>
+                  <p> {{ m.matiere.description }} </p>
+                </div>
+                <div class="elem">
+                  <h2> Nombre d'heure de CM : </h2>
+                  <p> {{ m.hcm}} h</p>
+                </div>
+                <div class="elem">
+                  <h2> Nombre d'heure de TD : </h2>
+                  <p> {{ m.htd}} h</p>
+                </div>
+                <div class="elem">
+                  <h2> Nombre d'heure de TP : </h2>
+                  <p> {{ m.htp}} h</p>
+                </div>
+                <div class="elem">
+                  <h2> Nombre de groupe de TD : </h2>
+                  <p> {{ m.forNivGroupe.nbgroupetd}} </p>
+                </div>
+                <div class="elem">
+                  <h2> Nombre de groupe de TP : </h2>
+                  <p> {{ m.forNivGroupe.nbgroupetp}} </p>
+                </div>
+                <div class="elem">
+                  <h2> Compétence(s) : </h2>
+                  <ng-container *ngFor="let i of m.tabc.comps">
+                    <p> {{  i.nom}} </p>
+                  </ng-container>
+                </div>
+                <div class="elem">
+                  <h2> Coût de l'heure de TD : </h2>
+                  <p> {{ m.coutHTD}} €</p>
+                </div>
+                <button class="btnContinuer" (click)="deletee(m.id)">Supprimer</button>
+
+              </div>
+ 
+              <pagination-controls style="text-align: center;" (pageChange)="page = $event"></pagination-controls>
+
+      
+        </div>
+  
+        <button class="btnContinuer" [disabled]="getMatieres()" (click)="next()">Continuer</button>
+  
+        <ng-template #notreadyM>
+  
+          <h2>Aucune matières disponibles</h2>
+      
+        </ng-template>
+      </div>
+    </section>
+  </section>
+  
+  <div class="back">
+    <button class="btnBot" (click)="goB()"> <- Retour</button>
+  </div>
+  
+  
+  </div>
+  
+  <ng-template  #Authentification>
+    <div class="pasAcces">
+    <h1 class="stack">Vous ne pouvez voir cette page sans vous connecter</h1>
+    <button (click)="goB()">Back</button>
+    </div>
+  </ng-template>

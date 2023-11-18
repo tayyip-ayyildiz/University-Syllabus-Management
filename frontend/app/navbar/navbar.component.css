@@ -1,0 +1,53 @@
+html{
+    width: 100%;
+}
+
+
+.navbar{
+    display: flex;
+    justify-content: right;
+    list-style-type: none;
+
+    overflow: hidden;
+
+    color: rgb(15,30,50);
+    width: 100%;
+    margin: auto;
+    padding: 1px;
+    font-size: 1em;
+    background-color: #8b8bb1;
+
+}
+
+
+li a, li p, .dropbtn, .dropdown{
+    display: inline-block;
+    color: rgb(15,30,50);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover, li p:hover .dropdown:hover .dropbtn {
+    background-color: #7b7baf;
+    color: whitesmoke;
+    transition: 0.5s;
+}
+
+
+
+
+.dropbtn{
+    display: flex;   
+    color: #493f3b;
+
+}
+
+.ligne{
+    border-top: 2px solid black;
+    width: 100%;
+}
+
+.p{
+    font-size: 0.9em;
+}

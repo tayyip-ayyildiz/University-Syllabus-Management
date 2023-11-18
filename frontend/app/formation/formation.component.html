@@ -1,0 +1,62 @@
+<body>
+  <div *ngIf="auth.isAuthentified; else Authentification">
+
+    <div class="btn">
+      <button class="btnTop" (click)="checkC()">Créer nouvelle formation</button>
+      <button class="btnTop" (click)="changeRatio()">Changer Ratio</button>
+    </div>
+    
+    <ng-container *ngIf="ready; else notready">
+    <div *ngIf="formations.length!=0; else nullform">
+    
+      <ng-container *ngFor="let form of getFormationsSansDoublons()">
+      <h1>{{form}}</h1>
+    
+      <div class="flexFormation">
+        <ng-container *ngFor="let v of formations">
+          <!--   | paginate: { itemsPerPage: 3, currentPage: page } -->
+          <ng-container *ngIf="form == v.formation.nom  ">
+          <div class="flip-card marginFormation">
+            <div class="flip-card-inner">
+    
+              <div class="flip-card-front">
+                <p class="title">{{v.niveauF.nom}}</p>
+                <p class="title">{{v.specialite.nom}}</p>
+                <p class="title">{{v.parcours.nom}}</p>
+              </div>
+    
+            <div class="flip-card-back">
+              <div class="divDetails">
+                <a class="aDetails" [routerLink]="['/detailF/',v.id]">Details</a>
+              </div>
+            <div class="divDetails">
+                <a class="aDetails" routerLink="" (click)="delete(v.id)">Supprimer</a>
+              </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        </ng-container>
+        <!-- <pagination-controls (pageChange)="page = $event"></pagination-controls> -->
+
+      </div>
+    </ng-container>
+    </div>
+  </ng-container>
+    <ng-template #nullform>
+    
+      <h2>Aucune formations disponibles</h2>
+    
+    </ng-template>
+  </div>
+  <ng-template #notready>
+    
+    <h2>Chargement ... </h2>
+  
+  </ng-template>
+  <ng-template #Authentification>
+  
+    <h3>Vous ne pouvez voir cette page sans vous connecter</h3>
+    <button routerLink="/">Retour au menu</button>
+  
+  </ng-template></body>

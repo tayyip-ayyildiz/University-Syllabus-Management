@@ -1,0 +1,58 @@
+<!-- <div *ngIf="isAuthentified, else Authentification">
+
+
+<h3>Avant de commencer à créer les formations qui constituront votre établissement, veuillez choisir le ratio TP :</h3>
+
+<form>
+    <label>Ratio :</label>
+    <select #ratioTP id="ratioTP" name="ratioTP" [(ngModel)]="selectedTarif" required>
+      <option value="" disabled selected hidden>Choisissez une option</option>
+      <option *ngFor="let item of tarifs" [value]="item">{{ item }}</option>
+    </select>
+  
+    <br>
+  
+    <button (click)="ajouter()">Continuer</button>
+    <button (click)="goB()">Retour</button>
+  </form>
+  
+
+</div>
+
+
+<ng-template #Authentification>
+  <h1 class="stack">Vous ne pouvez voir cette page sans vous connecter</h1>
+  <button routerLink="/">Retour au menu</button>
+</ng-template> -->
+
+<section id="contact">
+  <div class="formulaire">
+    <div *ngIf="isAuthentified, else Authentification">
+
+
+      <h3>Avant de commencer à créer les formations qui constituront votre établissement, veuillez choisir le ratio TP :</h3>
+      
+      <form class="formRatio">
+        <div style="width:100%">
+          <select style="width:47%" #ratioTP id="ratioTP" name="ratioTP" [(ngModel)]="selectedTarif" required>
+            <option value="" disabled selected hidden>Choisir le ratio</option>
+            <option *ngFor="let item of tarifs" [value]="item">{{ item }}</option>
+          </select>
+        </div>
+      <div class="btnRatio">
+        <button (click)="goB()">Retour</button>
+        <button (click)="ajouter()">Continuer</button>
+      </div> 
+        </form>
+        
+      
+      </div>
+  </div>
+</section>
+
+
+
+<ng-template #Authentification>
+  <h1 class="stack">Vous ne pouvez voir cette page sans vous connecter</h1>
+  <button routerLink="/">Retour au menu</button>
+</ng-template>

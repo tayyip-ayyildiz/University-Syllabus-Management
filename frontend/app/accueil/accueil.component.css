@@ -1,0 +1,28 @@
+.title{
+    width: 500px;
+    margin: auto;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+button{
+    width: 192px;
+    height: 50px;
+    border-radius: 8px;
+    border: none;
+    background-color: #8b8bb1;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+    cursor: pointer;
+    margin: 0 auto;
+}
+
+.dlMU{
+text-decoration: none;
+color: white;
+}
+
+.divDL{
+    margin-top: 200px;
+}

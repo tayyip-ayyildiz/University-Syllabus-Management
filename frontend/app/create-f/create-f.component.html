@@ -1,0 +1,107 @@
+<div *ngIf="isAuthentified, else Authentification">
+
+  <section id="contact">
+    <div class="formulaire">
+        <div class="title">
+
+            <h3>Formation</h3>
+        </div>
+    
+        <form>
+            <div class="erreur">
+            <div *ngIf="!nomB">
+
+                <p>Veuillez remplir le nom !</p>
+        
+            </div>
+            <div *ngIf="!descriptionB">
+    
+                <p>Veuillez remplir la description !</p>
+        
+            </div><div *ngIf="!niveauB">
+    
+                <p>Veuillez remplir le niveau de formation !</p>
+        
+            </div>
+        </div>
+            <input #nomF id="nomF" type="text" name="nom" [value]="formation.nom" placeholder="Nom de la formation *" required>
+            <select class="select" #niveauxFo id="niveauxFo" name="niveauxFo" required [(ngModel)]="selectedNiveau">
+                <option selected="selected" value=""> --- Niveau formation ---</option>
+                <option *ngFor="let item of niveauxF" [value]="item.id">{{ item.nom }}</option>
+            </select>
+            <textarea #descriptionF id="descriptionF" name="projet" [value]="formation.description" placeholder="Déscription de la Formation... *"></textarea>
+           
+                <h3 class="h3">Spécialité</h3>
+                <div class="erreur">
+
+          
+                  <div *ngIf="!speB">
+              
+                   <p>Veuillez séléctionner une option</p>
+                  
+                  </div>  
+                  <div *ngIf="!descriptionSB">
+    
+                    <p>Veuillez remplir ce champ</p>
+                
+                </div>
+            </div>
+                <select class="select" #spe id="spe" name="spe" required [(ngModel)]="selectedS">
+                    <option value="">--- Spécialité déjà existante ---</option>
+                    <option *ngFor="let item of specialites" [value]="item.id">{{ item.nom }}</option>
+                  </select>
+                  <input placeholder="Nouveau nom de spécialité" #nomS id="nomS" type="text" required [value]="specialite.nom" [disabled]="selectedS!=0">
+            <textarea #descriptionS id="descriptionS" [value]="specialite.description" [disabled]="selectedS!=0" required="required" placeholder="Déscription de la Spécialité... *"></textarea>
+
+            <h3 class="h3">Parcours</h3>
+        <div class="erreur">
+            <div *ngIf="!parcoursB">
+
+                <p>Veuillez séléctionner une option !</p>
+    
+            </div>
+        </div>
+            <select class="select" #parcour id="parcour" name="parcour" required [(ngModel)]="selectedP">
+                <option value="">--- Choisir un parcours ---</option>
+                <option *ngFor="let item of parcours" [value]="item.id">{{ item.nom }}</option>
+            </select>
+
+            <h3 class="h3">Groupes</h3>
+<div class="erreur">
+        <div *ngIf="!parcoursB">
+
+            <p>Veuillez entrer une valeur positive!</p>
+
+        </div>
+    </div>
+    <div style="width:100%">
+        <div class="groupe">
+            <label>Groupe de TD</label>
+            <input #nbgTD id="nbgTD" type="number" name="nom" [value]="forniveauG.nbgroupetd" min="1" placeholder="Nombre de groupe de TD *" required>
+        </div>
+        <div class="groupe">
+            <label>Groupe de TP</label>
+            <input #nbgTP id="nbgTP" type="number" name="nom" [value]="forniveauG.nbgroupetp" min="1" placeholder="Nombre de groupe de TP *" required>
+        </div>
+    </div>
+            <div class="bouttonBottom">
+            <button type="submit"(click)="goB()">Back</button>
+            <ng-container *ngIf="!isLoading">
+                <!-- Contenu à afficher pendant la requête -->
+                <button type="submit" (click)="create(nomF.value, descriptionF.value, nomS.value, descriptionS.value, nbgTD.valueAsNumber, nbgTP.valueAsNumber)">New</button>
+            </ng-container>
+            <ng-container *ngIf="isLoading">
+                <!-- Contenu à afficher pendant la requête -->
+                <button type="submit" (click)="create(nomF.value, descriptionF.value, nomS.value, descriptionS.value, nbgTD.valueAsNumber, nbgTP.valueAsNumber)" [disabled]="isLoading">Chargement...</button>
+            </ng-container>
+        </div> 
+        </form>
+    </div>
+</section>
+</div>
+<ng-template  #Authentification>
+    <div class="pasAcces">
+    <h1 class="stack">Vous ne pouvez voir cette page sans vous connecter</h1>
+    <button (click)="goB()">Back</button>
+    </div>
+  </ng-template>

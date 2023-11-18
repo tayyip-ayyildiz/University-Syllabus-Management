@@ -1,0 +1,123 @@
+<div *ngIf="isAuthentified, else Authentification">
+  
+  <section id="contact">
+    <div class="formulaire">
+        <div class="title">
+  
+            <h3>Créer compétences</h3>
+        </div>
+    
+        <form>
+           <div style="width:100%">
+            <input #nomC id="nomC" type="text" name="nom" style="width:47%" placeholder="Nom de la compétence *" required>
+          </div>
+          <select class="select" #theme id="theme" name="theme" required [(ngModel)]="selectedC">
+            <option value="">-- Catégories existantes --</option>
+            <option *ngFor="let item of themesT" [value]="item.id">{{ item.nom }}</option>
+          </select>
+      
+              <input #nomT id="nomT" type="text" required [disabled]="selectedC!=0" placeholder="Nouvelle catégorie... *">
+              <textarea #description id="description" required="required" placeholder="Déscription de la Compétence... *"></textarea>
+  
+        </form>
+        <ng-container *ngIf="!isLoading">
+          <!-- Contenu à afficher pendant la requête -->
+          <button class="btnNewComp" (click)="create(nomC.value, nomT.value, description.value)">Ajouter compétence</button>
+      </ng-container>
+      <ng-container *ngIf="isLoading">
+        <!-- Contenu à afficher pendant la requête -->
+        <button class="btnNewComp" (click)="create(nomC.value, nomT.value, description.value)" [disabled]="isLoading">Chargement...</button>
+    </ng-container>
+  
+    </div>
+  </section>
+  
+  
+  <!--        AJOUTER LE BTN POUR CREER UNE NOUVELLE COMPETENCE ICI           -->
+  
+  <section id="contact">
+    <div class="formulaire">
+        <div class="title">
+  
+            <h3>Compétences existantes</h3>
+        </div>
+    
+        <form>
+  <div class="catégorie">
+          <label for="themeE">Catégorie :</label>
+          <select #themeE id="themeE" name="themeE" required [(ngModel)]="selectedT">
+            
+          <option value="">-- Sélectionnez --</option>
+          <option *ngFor="let item of themesT" [value]="item.id">{{ item.nom }}</option>
+          </select>
+        </div>
+          <input class="btnNewComp" type="button" (click)="filtrerLesCats()" value="Afficher">
+          
+        </form>  
+
+
+        <ng-container *ngFor="let c of competencesEF | paginate: { itemsPerPage: 3, currentPage: page }">
+          <div class="compSelectedBtn">
+            <div class="compSelected">
+              <h1>{{c.nom}}</h1>
+              <p>{{c.description}}</p>
+            </div>
+            <div>
+              <button class="btnComp" (click)="add(c.id)">Ajouter</button>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="pagination1">
+          <pagination-controls (pageChange)="page = $event"></pagination-controls>
+      </ng-container>
+    </div>
+  </section>
+
+
+  <section id="contact">
+    <div class="formulaire">
+        <div class="title">
+            <h3>Mes compétences</h3>
+        </div>
+    
+        <div *ngIf="ready && competenceF.comps.length!=0; else notready">
+          <ng-container *ngFor="let c of competenceFVisuel.comps| paginate: { itemsPerPage: 3, currentPage: page1 }">
+            <div class="compSelectedBtn">
+              <div class="compSelected">
+                <h1>{{c.nom}}</h1>
+                <p>{{c.themeC.nom}}</p>
+                <p>{{c.description}}</p>
+              </div>
+              <div>
+                <button (click)="ret(c.id)">Retirer</button>
+              </div>
+            </div>
+          </ng-container>
+            <pagination-controls (pageChange)="page1 = $event"></pagination-controls>
+
+
+      
+         </div>
+    
+         <ng-template #notready>
+  
+          <h2>Aucune compétences disponibles</h2>
+      
+        </ng-template>
+        
+    </div>
+    <div class="btnBottom">
+      <button class="btnBot" [disabled]="getCompetences()" (click)="next()">Continuer</button>
+    </div>
+  </section>
+  
+  <div class="back">
+    <button class="btnBotFixe" (click)="goB()"> <- Retour</button>
+  </div>
+  </div>
+  <ng-template #Authentification>
+    <h1 class="stack">Vous ne pouvez voir cette page sans vous connecter</h1>
+    <button routerLink="/">Retour au menu</button>
+  </ng-template>
+  
+  

@@ -1,0 +1,294 @@
+.listMatiereVide {
+    height: 225px;
+    width: 225px;
+    margin: 10px;
+    padding: 10px;
+    /*display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;*/
+    border: 1px dashed black;
+  }
+
+  .listMatiereFull{
+    height: 225px;
+    width: 225px;
+    margin: 10px;
+    padding: 10px;
+    /*display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;*/
+    border: 1px solid black ;
+  }
+
+  /* .listMatieres {
+    width: 250px;
+    position: absolute;
+    background-color: red;
+    right: 0;
+    top: 400px;
+    text-align: center;
+  } */
+
+  .matiere {
+    width: 50%;
+    padding: 8px 0;
+  }
+
+  .flexWrap{
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1.1em;
+  }
+
+  #contact{
+    background-color: #c6c6dd;
+    padding: 100px 0 0 0;
+}
+
+#contact .formulaire{
+    max-width: 1100px;
+    margin: 0px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0px 10px 50px -10px #d6d6d6;
+}
+
+#contact .formulaire .title{
+    text-align: center;
+}
+
+#contact .formulaire .title h6{
+    font-size: 1.5em;
+}
+
+#contact .formulaire .title h3{
+    font-size: 2.8em;
+    margin: -40px 0 15px 0;
+
+}
+
+#contact .formulaire form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 700px;
+}
+
+#contact .formulaire form input{
+    width: 47%;
+    margin: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #e4e4ec;
+    transition: 0.2s;
+}
+
+#contact .formulaire form select{
+    width: 47%;
+}
+#contact .formulaire form input:hover,
+#contact .formulaire form select:hover,
+#contact .formulaire form textarea:hover{
+    border-bottom: 2px solid #1fb3fb;
+}
+
+#contact .formulaire form textarea, 
+#contact .formulaire form select, 
+#contact .formulaire form input{
+    margin: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #e4e4ec;
+    transition: 0.2s;
+}
+#contact .formulaire form textarea,
+#contact .formulaire form h3
+{
+    width: 100%;
+    resize: none;
+}
+
+#contact .formulaire form h3{
+    font-size: 2.5em;
+}
+
+#contact .formulaire form button{
+    width: 192px;
+    height: 50px;
+    border-radius: 8px;
+    border: none;
+    background-color: #DBBC82;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+    cursor: pointer;
+    outline: none;
+    margin: 0 auto;
+}
+
+#contact .formulaire form p{
+    font-size: 0.5em;
+}
+
+.h3{
+    text-align: center;
+    padding-top: 25px;
+}
+
+.bouttonBottom{
+    width: 800px;
+    margin: 50px auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.title{
+    padding-top: 50px;
+}
+
+
+
+.erreur{
+    width: 100%;
+    text-align: center;
+    font-size: 2em;
+    color: red;
+}
+
+.select{
+    background-color: white;
+}
+
+.groupe{
+    display: flex;
+    justify-content: space-around;
+}
+
+.categorie{
+    display: flex;
+    justify-content: space-between;
+    width: 450px;
+}
+
+.compSelected{
+    width: 800px;
+    margin: auto;
+}
+
+.compSelectedBtn{
+    margin: 15px 0;
+}
+
+h1{
+    font-size: 1.3em;
+    text-transform: uppercase;
+}
+
+p{
+    padding-left: 30px;
+    font-size: 1.1em;
+}
+
+.btnComp{
+    height: 30px;
+    width: 70px;
+}
+
+.btnNewComp{
+    margin: 20px 0;
+    height: 35px;
+    width: 170px;
+}
+
+.btnBottom{
+    width: 200px;
+    margin: auto;
+}
+
+.btnBot{
+    height: 30px;
+    width: 85px;
+    margin: 15px;
+}
+
+.back{
+    position: fixed;
+    top: 50px;
+    left: 15px;
+    z-index: 150;
+}
+
+.dragDrop{
+    display: flex;
+    justify-content: space-between;
+    width: 800px;
+}
+
+.label{
+    padding-top: 35px;
+}
+.h1{
+    margin-left: -45px;
+}
+
+.sectionBot{
+    padding-top: 50px;
+}
+
+.fontSize{
+    font-size: 2.5em;
+}
+
+.btnValider,.btnContinuer{
+    width: 192px;
+    height: 50px;
+    border-radius: 8px;
+    border: none;
+    background-color: #8b8bb1;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+    cursor: pointer;
+    outline: none;
+    margin: 0 auto;
+}
+
+
+
+.flexWrap{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.elem{
+    width: 50%;
+    text-align: center;
+}
+
+.pasAcces{
+    color: red;
+    text-align: center;
+}
+
+button{
+    width: 192px;
+    height: 50px;
+    border-radius: 8px;
+    border: none;
+    background-color: #ff0000;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+    cursor: pointer;
+    outline: none;
+    margin: 0 auto; 
+}
