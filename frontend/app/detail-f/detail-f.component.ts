@@ -101,8 +101,6 @@ forN: ForNivGroupeWithId={
 
   deleteM(id:number){ //vérifier si id n'est pas un string
 
-    console.log(id)
-
     this.linkS.deleteLinkFromId(id).subscribe(()=>{
 
       window.location.reload();
@@ -174,7 +172,6 @@ forN: ForNivGroupeWithId={
           )
         )
       ).subscribe((tabs: any[]) => {
-        console.log("dzjdd", tabs, this.f, this.n, this.s, this.p);
         this.links = tabs;
         this.ready = true;
       });
