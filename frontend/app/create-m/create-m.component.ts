@@ -228,8 +228,6 @@ export class CreateMComponent implements OnInit{
 
  async filtrerLesCats(){
 
-  console.log("ezeze", this.selectedT, this.matieresE.length)
-
   this.matieresEF=this.matieresE.filter(mat=>{
 
     return this.selectedT==this.getId(mat.themeM);
@@ -277,8 +275,6 @@ export class CreateMComponent implements OnInit{
 
     this.matieresE=q;
 
-    console.log("TEST");
-
   }
 
 
@@ -295,7 +291,6 @@ export class CreateMComponent implements OnInit{
         
         this.linkS.deleteLinkFromId(id).subscribe((a)=>{
           const totalItems = this.mats.length;
-          console.log(totalItems +" ici")
           const currentPageItems = (totalItems % this.itemsPerPage);
      
           if (currentPageItems === 0 && this.page > 1) {
@@ -341,7 +336,6 @@ export class CreateMComponent implements OnInit{
 
 
   chooseMat(m:number){
-    console.log(m);
 
     if(this.matieresE.some((e)=>e.id==m)){
 
@@ -425,7 +419,6 @@ export class CreateMComponent implements OnInit{
     this.competenceFNomCreate.forEach((e)=>{
       this.competenceCreate.comps.push("/api/competences/"+e.id);
     })
-    console.log(theme, this.selectedTM)
     if(nom.length!=0 && (theme.length!=0 || this.selectedTM!=0) && description.length!=0 && heureCM>=0 && heureTD>=0 && heureTP>=0 && coutTD>0 && this.competenceCreate.comps.length!=0){
       this.isLoading = true;
 
@@ -448,8 +441,6 @@ export class CreateMComponent implements OnInit{
         theme="";
 
       }
-
-      console.log("HERERHEHRERH",this.selectedM)
 
       if(!this.matieresE.some(e=>e.nom==this.mat.nom) || this.selectedM!=0){   //vérifie que la matière n'est pas déja crée
 
@@ -483,9 +474,6 @@ export class CreateMComponent implements OnInit{
   
         }
   
-          
-  
-          console.log("HERE1");
   
           this.totk.matiere="/api/matieres/"+m.id;
   
@@ -618,8 +606,6 @@ export class CreateMComponent implements OnInit{
 
         this.forNS.forNivGroupeFromId(this.id).subscribe((a)=>{
 
-          console.log(a.linkForNivG)
-
           this.forN=a;
 
           this.f=this.getId(this.forN.formation);
@@ -633,8 +619,6 @@ export class CreateMComponent implements OnInit{
           if(this.id!==undefined){
 
           this.linkS.getLinkWithAll(this.id).subscribe((tabs:any[]) => {
-              
-            console.log("dzjdd",this.f,this.n,this.s,this.p,tabs)
             this.mats=tabs;
 
           });
@@ -659,7 +643,6 @@ export class CreateMComponent implements OnInit{
 
       
             });
-            console.log("apres")
 
             forkJoin(competenceObs).subscribe((competences) => {
       
@@ -736,7 +719,6 @@ export class CreateMComponent implements OnInit{
       const alreadyExists = event.container.data.indexOf(event.previousContainer.data[event.previousIndex]) > -1;
       if (!alreadyExists) {
         copyArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex)
-        console.log("1")
       }
     }
   }
@@ -747,11 +729,9 @@ export class CreateMComponent implements OnInit{
       const alreadyExists = event.container.data.indexOf(event.previousContainer.data[event.previousIndex]) > -1;
       if (!alreadyExists) {
         copyArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex)
-        console.log("3")
       }
       else {
         event.previousContainer.data.splice(event.previousIndex, 1);
-        console.log("4")
       }
     }
   }
