@@ -54,11 +54,7 @@ export class RatioTpComponent {
 
     this.tarifS.all().subscribe((t)=>{
 
-      console.log("sasas", t[0])
-
       if(t.length==0){
-
-        console.log("1")
 
         this.tarifS.createTarif(this.t).subscribe(()=>
         {
@@ -71,12 +67,6 @@ export class RatioTpComponent {
       }
 
       else{
-      
-        console.log("2")
-
-        console.log("element selec",this.selectedTarif)
-
-        //console.log(t1)
 
         t[0].ratioTP=parseFloat(this.selectedTarif)
     
