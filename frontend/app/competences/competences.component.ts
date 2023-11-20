@@ -139,8 +139,6 @@ export class CompetencesComponent implements OnInit {
 
     this.competencesE=q;
 
-    console.log("TEST");
-
   }
 
 }
@@ -151,7 +149,6 @@ getId(path: string): number {
 }
 
   async filtrerLesCats() {
-    console.log("ezeze", this.competencesEF, this.competencesE);
     this.pagination1 = true;
     this.competencesEF = this.competencesE
       .filter(comp => {
@@ -163,7 +160,6 @@ getId(path: string): number {
 
       .map(e => {
 
-        console.log("HERE");
         let tab1 = e.themeC.split("/");
         let copieO = { ...e }; // Crée une copie de l'objet e
         this.themeCS.themeCFromId(parseInt(tab1[tab1.length - 1])).subscribe(a => {
@@ -179,11 +175,7 @@ getId(path: string): number {
 
   ret(id: number) {
 
-    console.log("here",this.competenceF.comps, id)
-
     if(this.competenceF.comps.includes("api/competences/"+id)){ //si compétence présente
-
-      console.log("OK")
 
       this.competenceF.comps.forEach((el)=>{
 
@@ -204,7 +196,6 @@ getId(path: string): number {
             this.actualiserTab();
 
             const totalItems = this.competencesEF.length;
-            console.log(totalItems +" ici")
             const currentPageItems = (totalItems % this.itemsPerPage);
         
             if (currentPageItems === 0 && this.page1 > 1) {
@@ -300,8 +291,6 @@ getId(path: string): number {
 
     }
 
-    console.log("MODIF HERE", t,c ,r);
-
     let req=forkJoin({
 
       t:this.themeCS.modifyThemeC(t),
@@ -311,9 +300,6 @@ getId(path: string): number {
     });
 
     await firstValueFrom(req);
-
-    console.log("OK")
-    
 
 
     }
@@ -375,8 +361,6 @@ getId(path: string): number {
 
     }
     else if((nom.length!=0 && description.length!=0 && cat.length!=0 && this.selectedC==0)){  //thème non existant
-      
-      console.log("PAS CA ZINEDINE")
 
       if(!this.competencesE.some((e)=>e.nom==nom)){
 
@@ -391,19 +375,13 @@ getId(path: string): number {
 
           this.competenceS.createCompetence(this.competence).subscribe(async (b1)=>{
 
-                  console.log("PAS CA ZINEDINE1");
-
                   this.competenceF.comps.push("/api/competences/"+b1.id);
 
                   b1.tabAs.push("/api/tab_as/"+this.id1);
 
                   b.compets.push("/api/competences/"+b1.id);
 
-                  console.log("PAS CA ZINEDINE1.5",b,b1)
-
                   await this.modifAll(b,b1);
-
-                  console.log("PAS CA ZINEDINE2");
 
                   window.location.reload();
 
