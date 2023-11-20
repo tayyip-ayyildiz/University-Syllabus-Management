@@ -345,13 +345,11 @@ export class CreateFComponent implements OnInit {
   
       for (let i = 0; i < ta.length; i++) {
         if (ta[i].nom === nomF) {
-          console.log("FIND")
           idF = ta[i].id;
           break;
         }
       }
       
-      console.log(idF, this.selectedNiveau, this.selectedS, this.selectedP)
       const ta1 = await firstValueFrom(this.forNS.getForNFromFNPS(idF, this.selectedNiveau, this.selectedS, this.selectedP));
   
       return ta1.length !== 0;
@@ -438,9 +436,6 @@ export class CreateFComponent implements OnInit {
 
               ///////////////////////////////////////////////////////////////PARCOURS//////////////////////////////////////////////////////////////////////
 
-
-              console.log("AFTER AWAIT")
-
               
 
               ///////////////////////////SPECIALITE 4 SOLUTIONS POSSIBLES///////////////////////////////////////////
@@ -448,8 +443,6 @@ export class CreateFComponent implements OnInit {
               let sId=forNiveauId.specialite.split("/");
 
               if(nomS.length==0 && this.selectedS!=0){  //cas où tu choisis une spé déjà existante
-
-                console.log(1)
 
                 if(forNiveauId.crespeB==true){  //crée une spé au préalable    11111111111111111
 
@@ -502,8 +495,6 @@ export class CreateFComponent implements OnInit {
 
                 }
                 else{  //choisi spé au préalable       2222222222222222
-                        
-                  console.log(2)
 
                   this.specialiteS.specialiteFromId(parseInt(sId[sId.length-1])).subscribe((t1)=>{
 
@@ -523,8 +514,6 @@ export class CreateFComponent implements OnInit {
   
                     }
 
-                    console.log(2.1)
-
                     forNiveauId.specialite="/api/specialites/"+this.selectedS;
 
                     this.specialiteS.specialiteFromId(this.selectedS).subscribe((tr)=>{
@@ -535,8 +524,6 @@ export class CreateFComponent implements OnInit {
                       this.specialiteS.modifySpecialite(tr).subscribe((u5)=>{
 
                         if(u5){
-
-                          console.log(2.2, this.id1)
                           
                           if(this.id1!==undefined){
 
@@ -565,9 +552,6 @@ export class CreateFComponent implements OnInit {
 
 
               else if(this.selectedS==0 && (nomS.length!=0 && descriptionS.length!=0)){  //cas où tu crées une nouvelle spé ou modifi  CHECK SI TU SUPPRIMES ANCIENNE VALEUR ?
-
-                console.log(3)
-
 
 
                 if(forNiveauId.crespeB==true){ //si il avait crée la spé au préalable et qu'il décide de changer       33333333333333333
@@ -600,8 +584,6 @@ export class CreateFComponent implements OnInit {
 
                 }
                 else{ //si il choisit une spé déja existante           44444444444444444
-
-                  console.log(4)
 
                   forNiveauId.crespeB=true;
 
@@ -758,8 +740,6 @@ export class CreateFComponent implements OnInit {
 
         if(!this.forNExis){
 
-        console.log("direct",this.forNExis)
-
         let sId:number;
 
         this.ratioS.all().subscribe((r)=>{
@@ -770,8 +750,6 @@ export class CreateFComponent implements OnInit {
 
 
               sId= await this.spe(b.id, nomS, descriptionS, nbtd, nbtp);
-
-              console.log("HEHEHEHE",this.forniveauG);
 
               let tabAtemp:TabA={
 
@@ -823,8 +801,6 @@ export class CreateFComponent implements OnInit {
                       })
                     ).subscribe((results) => {
                         // Résultats des requêtes successives
-                        console.log("Toutes les requêtes ont été exécutées avec succès !");
-                        console.log(bol.id)
                         this.next(bol.id);
                       
                     });
